@@ -45,6 +45,7 @@ h1{
     border-radius: 4px;
     border: 1px solid #ccc;
     background: transparent;
+    color: #fff;
 }
 .whether-input .separator{
     height: 1px;
@@ -150,13 +151,90 @@ h1{
     
 }
 .whether-cards .card:hover,.current-weather:hover{
-    background-color: #4b85cd;
+    background-color: #83a7d3;
+    color: black;
     cursor: pointer;
 }
 .whether-cards .card img{
     max-width: 70px;
     margin: 5px 0 -12px 0;
 }
+
+.rise-set{
+    height: 300px;    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    
+}
+.baseline{
+    height: auto;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+
+}
+.semicircle{
+    height: 200px;
+    width: 400px;
+    border: 2px solid white;
+    border-radius: 250px 250px 0 0;
+}
+.sunrise ,.sunset{
+    height: 100px;
+    width: 100px;
+    margin-top: 12%;
+    display: flex;
+    flex-direction: column;
+    justify-content:end;
+    align-items: center;
+  }
+  .sunset{
+    display: flex;
+    flex-direction: column;
+    justify-content:end;
+    align-items: center;
+
+  }
+  .ss{
+    height: 40px;
+    width: 40px;
+  }
+  
+  .extra-details{
+    width: auto;
+    display: flex;
+    flex-direction: row;
+
+  }
+  .extracon{
+    box-shadow: 0 15px 20px 0 rgba(0,0,0,0.6);
+    transition: 0.3s;
+    border-radius: 10px;
+
+  }
+  .extra-details {
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items: center;
+    padding: 3%;
+    font-size: 18px;
+    color: white;
+  }
+
+  
+
+
+
+
+
+
+
 @media (max-width:1400px) {
     .whether-data .current-weather{
         padding: 20px;
@@ -182,6 +260,7 @@ h1{
     .whether-cards .card{
         width: calc(100%/2 -10px);
     }
+    
 }
 
 @media(max-width:750px){
@@ -218,5 +297,44 @@ h1{
     #temp{
         font-size: 25px;
     }
+    .baseline{
+        height: auto;
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    
+    }
+    .ss{
+        height: 25px;
+        width: 25px;
+      }   
+      
+      .semicircle {
+        width: 120px;
+        height: 60px;
+        border-radius: 250px 250px 0 0;
+        
+      }
+      .extra-details {
+        width: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content:space-around;
+        align-items: center;
+        padding: 2%;
+        font-size: 15px;
+        color: white;
+      }
+      .sunrise ,.sunset{
+        margin-top: 5%;
+        display: flex;
+        flex-direction: column;
+        justify-content:end;
+        align-items: center;
+      }
+      
+      
     
 }

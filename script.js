@@ -16,6 +16,16 @@ function isDaytime() {
     const hours = now.getHours();
     return hours >= 6 && hours < 18; 
   }
+
+  function sumtime(timestamp){
+                    const date = new Date(timestamp * 1000); 
+                    const hours = date.getHours();
+                    const amOrPm = hours >= 12 ? 'PM' : 'AM';
+                    const formattedHours = (hours % 12 || 12).toString().padStart(2, '0'); // Ensure two digits with leading zeros
+                    const minutes = date.getMinutes().toString().padStart(2, '0'); // Ensure two digits with leading zeros
+
+                    return `${formattedHours}:${minutes} ${amOrPm}`;
+  }
 const createWeatherCard = (cityName, weatherItem, index) => {
     if (index === 0) {
         const des = weatherItem.weather[0].description;
@@ -28,6 +38,13 @@ const createWeatherCard = (cityName, weatherItem, index) => {
           else if(des.includes("clouds")&&!isDaytime()) {
             bodyElement.style.backgroundImage = "url('nightcloudy.jpg')"; 
           }
+
+          document.querySelector("#min").innerHTML= "Min-Temp : "+ (weatherItem.main.temp_min - 273.15).toFixed(2) +"⁰C";
+          document.querySelector("#max").innerHTML= "Max-Temp : "+ (weatherItem.main.temp_max - 273.15).toFixed(2) +"⁰C";
+          document.querySelector("#sea").innerHTML= "Sea-Level : "+ (weatherItem.main.sea_level/1000).toFixed(2) +"Km";
+
+
+
          
          
         return `
@@ -37,13 +54,13 @@ const createWeatherCard = (cityName, weatherItem, index) => {
                 <h4>Temperature: ${(weatherItem.main.temp - 273.15).toFixed(2)} ⁰C</h4>
                 <h4>Wind: ${weatherItem.wind.speed} M/s</h4>
                 <h4>Humidity: ${weatherItem.main.humidity} %</h4>
-                <h4>Pressure: ${weatherItem.main.pressure} mb</h4>
+                <h4>Pressure: ${weatherItem.main.pressure} hPa</h4>
                 
             </div>
             <div class="icon">
                 <h4   id="temp">${(weatherItem.main.temp - 273.15).toFixed(2)} ⁰C</h4>
                 <img src="http://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@4x.png" alt="weather-icon">
-                <h4>${weatherItem.weather[0].description}</h4>
+                <h3>${weatherItem.weather[0].description}</h3>
             </div>
         `;
     } else {
@@ -54,6 +71,9 @@ const createWeatherCard = (cityName, weatherItem, index) => {
             <h4>Wind: ${weatherItem.wind.speed} M/s</h4>
             <h4>Humidity: ${weatherItem.main.humidity} %</h4>
             <h4>${weatherItem.weather[0].description}</h4>
+          
+
+
         </li>`;
     }
     
@@ -73,6 +93,7 @@ const getWetherDetails = (cityName, lat, lon) => {
         .then((data) => {
             const uniqueForecastDays = [];
             console.log(data);
+            
             const sixDaysForecast = data.list.filter((forecast) => {
                 const forecastDate = new Date(forecast.dt_txt).getDate();
                 if (!uniqueForecastDays.includes(forecastDate)) {
@@ -88,6 +109,11 @@ const getWetherDetails = (cityName, lat, lon) => {
             sixDaysForecast.forEach((weatherItem, index) => {
                 if (index === 0) {
                     currentweatherDiv.innerHTML = createWeatherCard(cityName, weatherItem, index);
+                                        
+                    document.querySelector(".srise").innerHTML= sumtime(data.city.sunrise);
+                    document.querySelector(".sset").innerHTML= sumtime(data.city.sunset);
+
+
                 } else {
                     weatherCardsDiv.insertAdjacentHTML("beforeend", createWeatherCard(cityName, weatherItem, index));
                 }
@@ -132,6 +158,54 @@ const getUserCoordinates = () => {
         }
     )
 }
+
+
+
+
+const smallCircle = document.getElementById("smallCircle");
+const semicircle = document.querySelector(".semicircle");
+
+let isDragging = false;
+
+smallCircle.addEventListener("mousedown", (e) => {
+  isDragging = true;
+  smallCircle.style.transition = "none";
+  moveSmallCircle(e);
+});
+
+document.addEventListener("mousemove", (e) => {
+  if (isDragging) {
+    moveSmallCircle(e);
+  }
+});
+
+document.addEventListener("mouseup", () => {
+  isDragging = false;
+  smallCircle.style.transition = "transform 0.5s ease-in-out";
+});
+
+function moveSmallCircle(e) {
+  const semicircleRect = semicircle.getBoundingClientRect();
+  const offsetX = e.clientX - semicircleRect.left;
+  const offsetY = e.clientY - semicircleRect.top;
+
+  const angle = (Math.atan2(offsetY, offsetX) * 180) / Math.PI;
+
+  // Adjust for the initial rotation of the semicircle
+  const adjustedAngle = angle - 90;
+
+  // Limit the angle to be within the semicircle
+  const limitedAngle = Math.min(Math.max(adjustedAngle, 0), 180);
+
+  smallCircle.style.transform = `translateX(-50%) rotate(${limitedAngle}deg)`;
+}
+
+
+
+
+
+
+
 
 
 
