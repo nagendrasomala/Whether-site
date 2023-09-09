@@ -134,9 +134,10 @@ const getUserCoordinates = () => {
 }
 
 
-getWetherDetails("Nagarajupalli",15.984553,80.054141);
+
+
 searchbutton.addEventListener('click', getCityCoordinates);
 locationbutton.addEventListener('click', getUserCoordinates);
-
+getUserCoordinates();
 
 });
