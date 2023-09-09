@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,500;0,800;1,700;1,800&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans',sans-serif,;
+}
+body{
+    background-image: url('thunder.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+h1{
+    color: #fff;
+    padding: 18px 0;
+    text-align: center;
+    font-size: 1.75rem;
+    background: #5372F0;
+}
+.container{
+    margin-top: 5em;
+    justify-content: space-around;
+    display: flex;
+    gap: 35px;
+    padding: 30px;
+}
+.whether-input{
+    width: 400px;
+}
+.whether-input input{
+    width: 100%;
+    height: 46px;
+    outline: none;
+    margin: 10px 0 20px 0;
+    padding: 0 17px;
+    font-size: 1rem;;
+    font-size:1.07rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: transparent;
+}
+.whether-input .separator{
+    height: 1px;
+    width: 100%;
+    background: #bbb;
+    margin: 25px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
+.whether-input .separator::before{
+    content: "or";
+    font-size: 1.2rem;
+    color: #6c757d;
+    padding: 0 15px;
+    background: #b2d7ec;
+    margin-top: -4px;
+}
+.whether-input button{
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: none;
+    background:#5372F0;
+}
+.whether-input .location-btn{
+    background:#6c757d;
+    border: none;
+
+}
+.whether-data{
+    width: 100%;
+}
+#temp{
+    font-size: 40px;
+}
+.current-weather{
+    background: transparent;
+    color: #fff;
+    padding: 20px 70px 20px 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 15px 20px 0 rgba(0,0,0,0.6);
+    transition: 0.3s;
+    border-radius: 10px;
+    align-items: center;
+    line-height: 30px;
+}
+.current-weather h2{
+    font-size: 1rem;
+
+}
+.whether-data h6{
+    margin-top: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+
+}
+.current-weather .icon {
+   text-align: center;
+}
+.current-weather .icon img{
+    max-width: 120px;
+    margin-top: -15px;
+}
+.current-weather .icon h4{
+    margin-top: -10px;
+    text-transform: capitalize;
+}
+.days-forecast h2{
+    font-size: 1.5rem;
+    margin: 20px 0;
+    
+}
+
+.whether-cards{
+    display: flex;
+    gap: 20px;
+}
+.whether-cards .card{
+    list-style: none;
+    color: #fff;
+    padding: 18px 16px;
+    opacity: 0.9;
+    background: transparent;
+    box-shadow: 0 15px 20px 0 rgba(0,0,0,0.6);
+    transition: 0.3s;
+    border-radius: 10px;
+    width: calc(100%/6);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 150px;
+   
+    
+}
+.whether-cards .card:hover,.current-weather:hover{
+    background-color: #4b85cd;
+    cursor: pointer;
+}
+.whether-cards .card img{
+    max-width: 70px;
+    margin: 5px 0 -12px 0;
+}
+@media (max-width:1400px) {
+    .whether-data .current-weather{
+        padding: 20px;
+    }
+    .whether-cards{
+        flex-wrap: wrap;
+    }
+    .whether-cards .card{
+        width: calc(100%/4 - 15px);
+    }
+}
+
+@media (max-width:1200px){
+    .whether-cards .card{
+        width: calc(100%/3-15px);
+    }
+}
+
+@media (max-width:950px){
+    .whether-input{
+        width: 450px;
+    }
+    .whether-cards .card{
+        width: calc(100%/2 -10px);
+    }
+}
+
+@media(max-width:750px){
+    .container{
+        flex-wrap: wrap;
+        padding: 20px;
+    }
+    .whether-input{
+        width: 100%;
+    }
+    .whether-cards .card{
+        flex-wrap: nowrap;
+        width: calc(100%/1 -80px);
+    }
+    .current-weather{
+        justify-content: space-between;
+        
+    }
+    h4{
+        font-size:12px ;
+    }
+    h2{
+        font-size: 18px;
+    }
+    .current-wether .icon {
+        max-width: 100px;
+        margin-top: -15px;
+        margin-right: -20px;
+    }
+    .current-wether .icon h4{
+        margin-left: 10px;
+          margin-top: -15px;
+    }
+    #temp{
+        font-size: 25px;
+    }
+    
+}
